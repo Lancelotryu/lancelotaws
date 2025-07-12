@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /lancelot/
+
+RewriteRule ^(fr|en)/([A-Za-z0-9_-]+)/?$ index.php?l=$1&section=$2 [L,QSA]
+RewriteRule ^(fr|en)/?$             index.php?l=$1&section=home [L,QSA]
+RewriteRule ^([A-Za-z0-9_-]+)/?$    index.php?l=en&section=$1    [L,QSA]
+RewriteRule ^$                       index.php?l=en&section=home [L,QSA]
