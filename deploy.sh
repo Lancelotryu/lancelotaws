@@ -1,29 +1,31 @@
 #!/usr/bin/env bash
 #
 # deploy.sh — one-click Git sync for Git Bash
-# 1) auto-starts ssh-agent if needed
-# 2) loads your private key
-# 3) commits + pushes if there is anything to sync
+# • Starts ssh-agent only if necessary
+# • Loads the private key
+# • Commits + pushes if something changed
 
-# --- config -------------------------------------------------------------
-KEY="$HOME/.ssh/id_ed25519"      # ← adapte si ta clé privée se nomme autrement
+set -euo pipefail
 
-# --- start agent + add key (idempotent) ---------------------------------
-pgrep -u "$USER" ssh-agent >/dev/null || eval "$(ssh-agent -s)" >/dev/null
-ssh-add "$KEY" 2>/dev/null
+KEY="$HOME/.ssh/clef"         # ← adapte si besoin
 
-# --- go to repo root (folder where this script lives) -------------------
-cd "$(dirname "$0")" || exit 1
+# ---- ensure we’re at repo root (folder of this script) ------------------
+cd "$(dirname "$0")"
 
-# --- nothing to commit ? ------------------------------------------------
-git diff --quiet && { echo "Nothing to sync 🚀"; exit 0; }
+# ---- start agent / add key if no key loaded ----------------------------
+if ! ssh-add -l >/dev/null 2>&1; then
+    eval "$(ssh-agent -s)" >/dev/null
+    ssh-add "$KEY"          # demande le passphrase une seule fois
+fi
 
-# --- build timestamped commit message -----------------------------------
+# ---- nothing to commit ? ------------------------------------------------
+git diff --quiet && { echo "Nothing to sync"; exit 0; }
+
+# ---- timestamped commit message ----------------------------------------
 msg="Sync $(date +%Y-%m-%dT%H-%M-%S)"
 
-# --- stage, commit, push -------------------------------------------------
+# ---- stage, commit, push ------------------------------------------------
 git add -A
 git commit -m "$msg"
-git push
-
-echo "Synchronization completed ✔"
+git push                          # upstream déjà configuré
+echo "Synchronization completed"
