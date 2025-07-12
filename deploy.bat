@@ -1,7 +1,17 @@
-@echo off
+﻿@echo off
+chcp 65001 > nul
 REM ------------------------------------------------------------------
 REM deploy.bat  -  runs deploy.sh then copies source files into repo
 REM ------------------------------------------------------------------
+robocopy "\\?\C:\Users\fdela\Desktop\Lancelot\Poésie" ^
+         "%ROOT%content\poems" *.ryu /S /XO
+
+robocopy "\\?\C:\Users\fdela\Desktop\Lancelot\Écriture\Nouvelles" ^
+         "%ROOT%content\novels" *.ryu /S /XO
+
+robocopy "\\?\C:\Users\fdela\Desktop\Lancelot\Écriture\Scripts" ^
+         "%ROOT%content\scripts" *.docx /S /XO
+		 
 
 set "ROOT=%~dp0"
 set "BASH=C:\Users\fdela\Desktop\Lancelot\Programmation\Git\bin\bash.exe"
