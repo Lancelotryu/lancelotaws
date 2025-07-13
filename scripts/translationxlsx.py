@@ -1,7 +1,9 @@
 import os
 import sys
 import subprocess
+from pathlib import Path
 
+base_dir = Path(__file__).resolve().parent.parent
 
 def update_translations():
     import pandas as pd
@@ -37,7 +39,7 @@ def update_translations():
 
     print("Reading Excel file : translations.xlsx...")
     try:
-        df = pd.read_excel("../content/translations.xlsx")
+        df = pd.read_excel(base_dir / "content" / "translations.xlsx")
         df['key'] = df[['Level 1', 'Level 2', 'Level 3', 'Level 4']].apply(
           lambda row: '.'.join(str(cell) for cell in row if pd.notna(cell) and str(cell).strip() != ''),
           axis=1

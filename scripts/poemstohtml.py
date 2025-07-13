@@ -6,6 +6,9 @@ from pathlib import Path
 from datetime import datetime
 from chardet import detect
 from dotenv import load_dotenv
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent.parent
 
 # === ARGPARSE ===
 parser = argparse.ArgumentParser(
@@ -19,10 +22,10 @@ parser.add_argument(
 args = parser.parse_args()
 
 # === CONFIGURATION ===
-load_dotenv(dotenv_path=Path("../.env"))
+load_dotenv(dotenv_path=base_dir / ".env")
 
-DOSSIER_POESIE      = Path("../content/poems/")
-DOSSIER_COMMENTAIRES = Path("../content/poems/Commentaires")
+DOSSIER_POESIE = base_dir / "content" / "poems"
+DOSSIER_COMMENTAIRES = DOSSIER_POESIE / "Commentaires"
 
 MYSQL_CONFIG = {
     'host': os.getenv("DB_HOST"),

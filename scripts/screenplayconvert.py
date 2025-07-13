@@ -6,6 +6,9 @@ import zipfile
 import xml.etree.ElementTree as ET
 import re
 from unidecode import unidecode
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent.parent
 
 CLASS_TAG_MAP = {
     'titre':       ('h1', 'playtitle'),
@@ -20,19 +23,13 @@ CLASS_RENAME_MAP = {
     'parenthtique': 'tdidascalies',
 }
 
-SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 #Path to the input folder
-INPUT_DIR = os.path.normpath(os.path.join(
-    SCRIPT_DIR,
-    '..', 'content', 'scripts'
-))
+INPUT_DIR = SCRIPT_DIR.parent / "content" / "scripts"
 
 #Path to the output folder
-OUTPUT_DIR = os.path.normpath(os.path.join(
-    SCRIPT_DIR,
-    '..', 'site', 'public', 'data'
-))
+OUTPUT_DIR = SCRIPT_DIR.parent / "site" / "public" / "data"
 
 #irrelevant styles to exclude
 EXCLUDED_STYLES = {
@@ -101,16 +98,16 @@ def style_to_tag_and_class(style):
 
 def convert_docx_to_php(input_path):
     # basic name
-    base = os.path.splitext(os.path.basename(input_path))[0]
+    base = input_path.stem
     slug = slugify(base, maxlen=6)
     # full output path
-    output_path = os.path.join(OUTPUT_DIR, slug + '.php')
+    output_path = OUTPUT_DIR / f"{slug}.php"
 
     xml   = extract_document_xml(input_path)
     paras = get_paragraphs(xml)
 
     # creating folder if needed 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(f'<section class="playsheet" id="{slug}">\n\n')
@@ -129,13 +126,13 @@ def convert_docx_to_php(input_path):
     print(f"File generated → {output_path}")
 
 def main():
-    if not os.path.isdir(INPUT_DIR):
+    if not INPUT_DIR.is_dir():
         print(f"[Erreur] Folder not found : {INPUT_DIR}")
         return
 
-    for fname in os.listdir(INPUT_DIR):
+    for fname in INPUT_DIR.iterdir():
         if fname.lower().endswith('.docx'):
-            convert_docx_to_php(os.path.join(INPUT_DIR, fname))
+            convert_docx_to_php(fname)
 
 if __name__ == '__main__':
     main()
