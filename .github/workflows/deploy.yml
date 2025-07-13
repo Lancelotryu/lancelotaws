@@ -34,6 +34,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region:            ${{ env.REGION }}
 
-    # 4. Envoie le ZIP dans S3 (ce qui déclenchera automatiquement la Lambda)
+    # 4. Supprime le ZIP précédent pour forcer l’événement S3
+    - name: Delete existing ZIP
+      run: aws s3 rm s3://${{ env.BUCKET }}/${{ env.ZIP_NAME }}
+
+    # 5. Upload le ZIP dans S3 (déclenche Lambda)
     - name: Upload ZIP to S3
       run: aws s3 cp ${{ env.ZIP_NAME }} s3://${{ env.BUCKET }}/${{ env.ZIP_NAME }}
