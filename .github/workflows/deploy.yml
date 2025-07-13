@@ -1,46 +1,32 @@
 name: Deploy portfolio to EC2
 
-# ──────────────── Quand lancer le workflow ────────────────
+# ──────────────── Déclencheurs ────────────────
 on:
   push:
-    branches: [ main ]          # déploie à chaque push sur main
-  workflow_dispatch:            # bouton « Run workflow » manuel
+    branches: [ main ]        # à chaque push sur la branche main
+  workflow_dispatch:          # ou déclenchement manuel via GitHub
 
-# ──────────────── Variables réutilisables ────────────────
+# ──────────────── Variables globales ────────────────
 env:
-  REGION: eu-north-1                            # ← Stockholm
-  BUCKET: lancelot-bucket99                     # ← bucket S3 privé
-  INSTANCE_ID: i-0fc7ccdce8cc9922d              # ← ton EC2
-  ZIP_NAME: site.zip                            # archive générée
+  REGION: eu-north-1
+  BUCKET: lancelot-bucket99
+  ZIP_NAME: site.zip
 
-# ──────────────── Job unique ────────────────
+# ──────────────── Tâche unique ────────────────
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # 1) Récupère le code
-    - name: Checkout
+    # 1. Récupère le code source du dépôt
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    # 2) Prépare Python (pour installer tes dépendances si besoin)
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-
-    - name: Install Python deps
-      run: |
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-        fi
-
-    # 3) Crée l’archive
+    # 2. Crée une archive ZIP avec les dossiers nécessaires
     - name: Zip site, content, scripts
-      run: |
-        zip -r ${{ env.ZIP_NAME }} site content scripts
+      run: zip -r ${{ env.ZIP_NAME }} site content scripts
 
-    # 4) Configure les identifiants AWS (secrets du dépôt)
+    # 3. Configure les identifiants AWS (venant des Secrets du dépôt)
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
@@ -48,23 +34,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region:            ${{ env.REGION }}
 
-    # 5) Upload dans S3 (remplace/écrase l’ancienne archive)
+    # 4. Envoie le ZIP dans S3 (ce qui déclenchera automatiquement la Lambda)
     - name: Upload ZIP to S3
-      run: |
-        aws s3 cp ${{ env.ZIP_NAME }} s3://${{ env.BUCKET }}/${{ env.ZIP_NAME }}
-
-    # 6) Déploiement via SSM
-    - name: Deploy on EC2 via SSM
-      run: |
-        aws ssm send-command \
-          --instance-ids ${{ env.INSTANCE_ID }} \
-          --document-name "AWS-RunShellScript" \
-          --comment "CI deploy $GITHUB_SHA" \
-          --parameters commands='[
-            "set -e",
-            "aws s3 cp s3://${{ env.BUCKET }}/${{ env.ZIP_NAME }} /tmp/",
-            "unzip -o /tmp/${{ env.ZIP_NAME }} -d /var/www/portfolio",
-            "sudo systemctl restart httpd"
-          ]' \
-          --region ${{ env.REGION }} \
-          --output text
+      run: aws s3 cp ${{ env.ZIP_NAME }} s3://${{ env.BUCKET }}/${{ env.ZIP_NAME }}
