@@ -1,12 +1,9 @@
-# Fichier de configuration sensible
 .env
 
-# Fichiers Python compilés
 __pycache__/
 *.py[cod]
 
 
-# Fichiers temporaires d'édition
 *.log
 *.tmp
 *.swp
@@ -16,6 +13,5 @@ Thumbs.db
 
 desktop.ini
 
-# IDE (VS Code, PyCharm, etc.)
 .vscode/
 .idea/
