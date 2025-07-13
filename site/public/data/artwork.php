@@ -38,7 +38,6 @@ render_section_buttons([
   </div>
 <!--- Rendering the Music blocks
       Just one line to render so many blocks, amazing, right ? --->
-<?php echo $l;?>
 <?php render_artwork_block($pdo, 'artwork.music'); ?>
 </div></section>
 
@@ -49,7 +48,7 @@ render_section_buttons([
 <p class="tldr"><?php t('artwork.poetry.tldr'); ?></p>
 <div class="text-center">
 <!--- Direct link to the Poetry page, managed by JavaScript --->
-<a href="<?= $basePath . $l?>/poetry" class="btn btn-lancelot"><?php t('nav.poetry'); ?></a></li>
+<a href="/<?= $l ?>/poetry" class="btn btn-lancelot"><?php t('nav.poetry'); ?></a></li>
 
 </div>
 <!--- Rendering Poetry block --->
@@ -86,8 +85,8 @@ echo "</div>";
 <div class="container" data-aos="fade-up" data-aos-delay="100">
 <p class="tldr"><?php t('artwork.scripts.tldr'); ?></p>
 <div class="text-center">
-      <a href="<?= $basePath . $l?>/mariup" class="btn btn-lancelot"><?php t('button.mariupol'); ?></a>
-      <a href="<?= $basePath . $l?>/souven" class="btn btn-lancelot"><?php t('button.soleils'); ?></a>
+      <a href="/<?= $l ?>/mariup" class="btn btn-lancelot"><?php t('button.mariupol'); ?></a>
+      <a href="/<?= $l ?>/souven" class="btn btn-lancelot"><?php t('button.soleils'); ?></a>
 </div>
 <!--- Again, one line to display all what I need --->
 <?php render_artwork_block($pdo, 'artwork.scripts'); ?>

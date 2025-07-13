@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container) return;
   // Grab key elements
   const content      = document.getElementById('nouvelle-content');    // where we inject the story HTML
-  const closeBtn     = document.getElementById('btn-close-nouvelle');  // “Fermer” button
+  const closeBtn     = document.getElementById('btn-close-nouvelle');  // "close" button
   const anchorNouv   = document.getElementById('shortnovels');         // section to scroll back to
   let   currentNovel = null;                                           // track which story is open
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Click handler for each “show-nouvelle” link:
+   * Click handler for each "show-nouvelle" link:
    *  - if clicking the same open story, just close it
    *  - otherwise, fetch the new story HTML and open the collapse
    */
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Otherwise fetch and display new content
-      fetch(`../lancelot/includes/nouvelle.php?name=${encodeURIComponent(name)}`)
+      fetch(`../../includes/nouvelle.php?name=${encodeURIComponent(name)}`)
         .then(response => {
           if (!response.ok) throw new Error('Network error');
           return response.text();
@@ -165,9 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(() => {
           content.innerHTML = `
-            <p class="text-danger">
-              Impossible de charger la nouvelle « ${name} ».
-            </p>`;
+            <p class="text-danger">Impossible de charger la nouvelle « ${name} ».</p>`;
         });
     });
   });

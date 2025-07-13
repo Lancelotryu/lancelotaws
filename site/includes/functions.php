@@ -2,7 +2,7 @@
 /* Getting the .env file from private subnet. */
 function load_env($path) {
     if (!file_exists($path)) {
-        die("❌ Can't find the .env file : $path");
+        die("Can't find the .env file : $path");
     }
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -391,34 +391,6 @@ function replace_markers(string $html, string $lang = 'en'): string
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //A full poem is stocked in one MySQL entry, already in HTML
 //So it should be very easy to display it.
 //However, I center each poem in a <div> "poem-box".
@@ -499,9 +471,6 @@ function render_poeme_by_id(array $poemes, string $id_logique): void
 }
 
 
-
-
-
 //I display many different things on the Artwork page, but in a quite simple way.
 //So this function alone is enough to display most of the sections of the Artwork page.
 function render_artwork_block(PDO $pdo, string $prefix): void
@@ -565,7 +534,7 @@ uksort($blocs, 'strnatcmp');
         }
 
         echo '<div class="row align-items-center my-5">';
-        echo '<div class="' . $textCol . '">';//Displaying the texte from translation table.
+        echo '<div class="' . $textCol . '">';//Displaying the text from translation table.
         if ($data['label']) {
             echo "<h3>" . allowtags($data['label']) . "</h3>\n";
         }

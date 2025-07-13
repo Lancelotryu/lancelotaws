@@ -1,5 +1,7 @@
-pandas
-openpyxl
-SQLAlchemy
+chardet
 mysql-connector-python
+openpyxl
+pandas
 python-dotenv
+sqlalchemy
+unidecode

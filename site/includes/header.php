@@ -1,6 +1,6 @@
 <head>
 <?php $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>
-<base href="<?= htmlspecialchars($basePath, ENT_QUOTES) ?>">
+<base href="/">
 
 <!--- Meta Website --->
 <meta charset="utf-8">
@@ -61,15 +61,15 @@
 <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet">
 
 <!--- CSS - I use 5 different files so it is easier to sort CSS styles. --->
-<link href="assets/css/style.css" rel="stylesheet">
-<link href="assets/css/nav.css" rel="stylesheet">
-<link href="assets/css/cv.css" rel="stylesheet">
-<link href="assets/css/poetry.css" rel="stylesheet">
-<link href="assets/css/script.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/nav.css" rel="stylesheet">
+<link href="/assets/css/cv.css" rel="stylesheet">
+<link href="/assets/css/poetry.css" rel="stylesheet">
+<link href="/assets/css/script.css" rel="stylesheet">
 
 <!--- Favicons --->
-<link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="/assets/img/favicon.png" rel="icon">
+<link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <?php
 $canonical = rtrim($site['url'], '/') . '/' . $l;

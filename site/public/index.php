@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 //var.php loads some text variables
-require_once 'includes/var.php';
+require_once '../includes/var.php';
 //functions.php contains PHP functions
-require_once 'includes/functions.php';
+require_once '../includes/functions.php';
 
 //Loading credentials for MySQL database from .env file in private subnet.
-load_env('../../../../Python/aws/.env');
+load_env('../../.env');
 
 //Connecting to database with poems, translations, etc.
 $pdo = new PDO(
@@ -50,15 +50,15 @@ $contentFile = "data/{$section}.php"; // data/poetry.php, etc.
 
 ?><!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($l, ENT_QUOTES, 'UTF-8'); ?>">
-<?php include_once 'includes/header.php'; ?>
+<?php include_once '../includes/header.php'; ?>
 <body>
-  <?php include_once 'includes/nav.php'; ?>
+  <?php include_once '../includes/nav.php'; ?>
     <main>
         <?php
         // Include the section content or fallback to home
 if (file_exists($contentFile)) {include $contentFile;} else {include 'data/home.php';} ?>
     </main>
 
-    <?php include_once 'includes/footer.php'; ?>
+    <?php include_once '../includes/footer.php'; ?>
 </body>
 </html>

@@ -9,14 +9,14 @@ def update_translations():
     from sqlalchemy import create_engine, Column, String, Text
     from sqlalchemy.orm import declarative_base, sessionmaker
 
-    print("📄 Chargement de la configuration (.env)...")
+    print("Charging .env...")
     load_dotenv()
     DB_URL = (
         f"mysql+mysqlconnector://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
         f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
     )
 
-    print(f"Connexion à la base de données : {os.getenv('DB_NAME')}...")
+    print(f"Connect to database: {os.getenv('DB_NAME')}...")
     try:
         engine = create_engine(DB_URL)
         Base = declarative_base()
@@ -31,23 +31,23 @@ def update_translations():
         Session = sessionmaker(bind=engine)
         session = Session()
     except Exception as e:
-        print("Échec de la connexion à la base de données.")
-        print(f"Détail de l’erreur : {e}")
+        print("Failed to connect to database.")
+        print(f"Error details : {e}")
         return
 
-    print("Lecture du fichier Excel : translations.xlsx...")
+    print("Reading Excel file : translations.xlsx...")
     try:
-        df = pd.read_excel("translations.xlsx")
+        df = pd.read_excel("../content/translations.xlsx")
         df['key'] = df[['Level 1', 'Level 2', 'Level 3', 'Level 4']].apply(
           lambda row: '.'.join(str(cell) for cell in row if pd.notna(cell) and str(cell).strip() != ''),
           axis=1
         )
     except Exception as e:
-        print("Erreur lors de la lecture du fichier Excel.")
-        print(f"Détail de l’erreur : {e}")
+        print("Can't read Excel file.")
+        print(f"Error details : {e}")
         return
 
-    print("Insertion des données dans la base...")
+    print("Inserting data in database...")
     insert_count = 0
     for _, row in df.iterrows():
         for lang in ['en', 'fr']:
@@ -57,10 +57,9 @@ def update_translations():
                 session.merge(entry)
                 insert_count += 1
     session.commit()
-    print(f"{insert_count} entrées traitées et enregistrées.")
+    print(f"{insert_count} entries handled and saved.")
 
 
 if __name__ == "__main__":
-    install_requirements()
     update_translations()
-    print("Script terminé avec succès.")
+    print("Script worked fine.")

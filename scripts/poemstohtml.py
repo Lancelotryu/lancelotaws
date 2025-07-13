@@ -19,10 +19,10 @@ parser.add_argument(
 args = parser.parse_args()
 
 # === CONFIGURATION ===
-load_dotenv(dotenv_path=Path("../aws/.env"))
+load_dotenv(dotenv_path=Path("../.env"))
 
-DOSSIER_POESIE      = Path("../../../Poésie")
-DOSSIER_COMMENTAIRES = Path("../../../Commentaires")
+DOSSIER_POESIE      = Path("../content/poems/")
+DOSSIER_COMMENTAIRES = Path("../content/poems/Commentaires")
 
 MYSQL_CONFIG = {
     'host': os.getenv("DB_HOST"),

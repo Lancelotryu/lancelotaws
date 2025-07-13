@@ -1,4 +1,4 @@
-<!--- Displaying the disclaimer about cookies and the copurights of the website --->
+<!--- Displaying the disclaimer about cookies and the copyrights of the website --->
     <footer id="footer">
 <div class="container mb-5 text-center">
   <p><?php t('footer.disclaimer'); ?></p>
@@ -13,4 +13,4 @@
 <script src="https://cdn.jsdelivr.net/npm/waypoints/lib/noframework.waypoints.min.js"></script>
 
 <!--- Custom JS File --->
-  <script src="/lancelot/assets/js/code.js"></script>
+  <script src="/assets/js/code.js"></script>

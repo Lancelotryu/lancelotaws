@@ -14,12 +14,12 @@ I have several function:
       <h1><?php echo $site['name']; ?></h1>
       <?php render_blocks($pdo, 'home.hero', $l); ?>
 <div class="text-center">
-      <a href="<?= $basePath . $l?>/projects" class="btn btn-lancelot"><?php t('button.projects'); ?></a>
-      <a href="<?= $basePath . $l?>/artwork" class="btn btn-lancelot"><?php t('button.artwork'); ?></a>
+      <a href="/<?= $l ?>/projects" class="btn btn-lancelot"><?php t('button.projects'); ?></a>
+      <a href="/<?= $l ?>/artwork" class="btn btn-lancelot"><?php t('button.artwork'); ?></a>
 </div>
     </div>
     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-        <img src="assets/img/profile/lancelot.png" alt="<?php echo $site['name']; ?>" class="profile-image">
+        <img src="/assets/img/profile/lancelot.png" alt="<?php echo $site['name']; ?>" class="profile-image">
     </div>
   </div>
 </div>

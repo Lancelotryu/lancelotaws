@@ -25,15 +25,13 @@ SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 #Path to the input folder
 INPUT_DIR = os.path.normpath(os.path.join(
     SCRIPT_DIR,
-    '..', '..', '..',
-    'Écriture', 'scripts'
+    '..', 'content', 'scripts'
 ))
 
 #Path to the output folder
 OUTPUT_DIR = os.path.normpath(os.path.join(
     SCRIPT_DIR,
-    '..', '..',
-    'Web', 'Xampp', 'htdocs', 'lancelot', 'data'
+    '..', 'site', 'public', 'data'
 ))
 
 #irrelevant styles to exclude
