@@ -36,7 +36,7 @@ def update_translations():
         print("Failed to connect to database.")
         print(f"Error details : {e}")
         return
-
+        
     print("Reading Excel file : translations.xlsx...")
     try:
         df = pd.read_excel(base_dir / "content" / "translations.xlsx")
