@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=base_dir / ".env")
 
 def update_translations():
     import pandas as pd

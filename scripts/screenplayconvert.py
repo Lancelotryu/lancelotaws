@@ -129,10 +129,8 @@ def main():
     if not INPUT_DIR.is_dir():
         print(f"[Erreur] Folder not found : {INPUT_DIR}")
         return
-
-    for fname in INPUT_DIR.iterdir():
-        if fname.lower().endswith('.docx'):
-            convert_docx_to_php(fname)
+    for docx_file in INPUT_DIR.glob("*.docx"):
+        convert_docx_to_php(docx_file)
 
 if __name__ == '__main__':
     main()

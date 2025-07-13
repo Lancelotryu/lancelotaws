@@ -2,13 +2,13 @@ import argparse
 import os
 import re
 import mysql.connector
-from pathlib import Path
 from datetime import datetime
 from chardet import detect
 from dotenv import load_dotenv
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=base_dir / ".env")
 
 # === ARGPARSE ===
 parser = argparse.ArgumentParser(
@@ -21,8 +21,6 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-# === CONFIGURATION ===
-load_dotenv(dotenv_path=base_dir / ".env")
 
 DOSSIER_POESIE = base_dir / "content" / "poems"
 DOSSIER_COMMENTAIRES = DOSSIER_POESIE / "Commentaires"
