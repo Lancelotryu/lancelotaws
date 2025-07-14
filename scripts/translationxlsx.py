@@ -4,16 +4,14 @@ import subprocess
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=base_dir / ".env")
 
 def update_translations():
     import pandas as pd
     from dotenv import load_dotenv
     from sqlalchemy import create_engine, Column, String, Text
     from sqlalchemy.orm import declarative_base, sessionmaker
-
     print("Charging .env...")
-    load_dotenv()
+    load_dotenv(dotenv_path=base_dir / ".env")
     DB_URL = (
         f"mysql+mysqlconnector://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
         f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"

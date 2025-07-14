@@ -32,5 +32,6 @@ if ! grep -q ".local/bin" "$PROFILE"; then
 fi
 echo 'export PATH=$PATH:/root/.local/bin' >> /root/.bashrc
 export PATH=$PATH:/root/.local/bin
+sudo chown -R ec2-user:ec2-user /home/ec2-user
 
 echo "✅ Installation terminée. Relancez la session ou tapez : source ~/.bash_profile"

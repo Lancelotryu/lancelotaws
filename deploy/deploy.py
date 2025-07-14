@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 
 import os
+os.environ["PYTHONPATH"] = "/home/ec2-user/.local/lib/python3.9/site-packages"
+import site
+site.addsitedir("/home/ec2-user/.local/lib/python3.9/site-packages")
+
 import subprocess
 import shutil
 import zipfile
 from datetime import datetime
 from pathlib import Path
+
 
 # ─────────────── CONFIG ───────────────
 BUCKET      = "lancelot-bucket99"
@@ -17,6 +22,13 @@ SCRIPTS_DIR = WEB_ROOT / "scripts"
 REQUIREMENTS = WEB_ROOT / "requirements.txt"
 USER_SITE   = "/home/ec2-user/.local/lib/python3.9/site-packages"
 LOG_FILE    = Path("/home/ec2-user/deploy.log")
+
+if not LOG_FILE.exists():
+    LOG_FILE.touch()
+    os.chmod(LOG_FILE, 0o666)  # lecture/écriture pour tous
+
+
+
 
 # ─────────────── LOGGING ───────────────
 def log(msg: str):
@@ -72,13 +84,17 @@ else:
     log("ℹ️ Aucun requirements.txt trouvé")
 
 # 6️⃣ Exécuter les scripts Python
+env = os.environ.copy()
+env["PYTHONPATH"] = f"/home/ec2-user/.local/lib/python3.9/site-packages:{env.get('PYTHONPATH', '')}"
+env["PATH"] = f"/home/ec2-user/.local/bin:{env.get('PATH', '')}"
+
 if SCRIPTS_DIR.exists():
     for script in sorted(SCRIPTS_DIR.glob("*.py")):
         log(f"🚀 Exécution : {script.name}")
         subprocess.run(
             ["python3", str(script)],
             check=True,
-            env={**os.environ, "PYTHONPATH": USER_SITE}
+            env=env  # ← utilisez cet environnement modifié
         )
 else:
     log("ℹ️ Aucun script trouvé dans /scripts")
