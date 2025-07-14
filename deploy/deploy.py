@@ -19,7 +19,6 @@ TMP_ZIP     = "/tmp/site.zip"
 DEPLOY_DIR  = Path("/home/ec2-user/www")
 WEB_ROOT    = DEPLOY_DIR / "portfolio"
 SCRIPTS_DIR = WEB_ROOT / "scripts"
-REQUIREMENTS = WEB_ROOT / "requirements.txt"
 USER_SITE   = "/home/ec2-user/.local/lib/python3.9/site-packages"
 LOG_FILE    = Path("/home/ec2-user/deploy.log")
 
@@ -59,9 +58,29 @@ if WEB_ROOT.exists():
 WEB_ROOT.mkdir(parents=True)
 log("🧹 Ancien portfolio supprimé et dossier recréé")
 
-# 4️⃣ Extraire directement dans le dossier final
-with zipfile.ZipFile(TMP_ZIP) as z:
-    z.extractall(WEB_ROOT)
+
+# 4️⃣ Extraire directement dans le dossier final avec log détaillé et try/except
+try:
+    with zipfile.ZipFile(TMP_ZIP) as z:
+        file_list = z.namelist()
+        log(f"📂 {len(file_list)} fichiers à extraire depuis le zip")
+
+        for filename in file_list:
+            info = z.getinfo(filename)
+            size_kb = info.file_size / 1024
+            log(f"📄 Extraction : {filename} ({size_kb:.1f} KB)")
+            z.extract(filename, WEB_ROOT)
+
+    log("✅ ZIP extrait avec succès dans /www/portfolio")
+
+except zipfile.BadZipFile:
+    log("❌ Erreur : le fichier ZIP est corrompu ou invalide")
+    exit(1)
+
+except Exception as e:
+    log(f"❌ Exception pendant l'extraction : {type(e).__name__} – {e}")
+    exit(1)
+
 log("✅ ZIP extrait dans /www/portfolio")
 
 # 7️⃣ Restaurer le fichier .env après le déploiement
