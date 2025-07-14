@@ -6,6 +6,7 @@ from datetime import datetime
 from chardet import detect
 from dotenv import load_dotenv
 from pathlib import Path
+from dotenv import load_dotenv
 
 base_dir = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=base_dir / ".env")

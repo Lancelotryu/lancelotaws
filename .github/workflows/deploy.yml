@@ -52,4 +52,4 @@ jobs:
           fi
 
       - name: Done
-        run: echo "✅ Lambda function ran successfully."
+        run: echo "Lambda function ran successfully."
