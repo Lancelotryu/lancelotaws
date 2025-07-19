@@ -705,14 +705,18 @@ function render_shortnovels(PDO $pdo, string $lang, string $imageBasePath = 'ass
 
 function render_projects(PDO $pdo): void
 {
-	global $l;
+    global $l;
     $stmt = $pdo->prepare("
         SELECT `key`, content 
         FROM translations 
         WHERE lang = :lang 
-        AND `key` LIKE 'projects.%'
+        AND `key` LIKE :prefix
     ");
-    $stmt->execute([':lang' => $l]);
+    $stmt->execute([
+        ':lang' => $l,
+        ':prefix' => 'projects.%'
+    ]);
+
     $results = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 
     // sorting by number
@@ -772,4 +776,5 @@ function render_projects(PDO $pdo): void
         }
     }
 }
+
 ?>
