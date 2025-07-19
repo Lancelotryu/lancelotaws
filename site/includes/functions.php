@@ -712,7 +712,7 @@ function render_projects(PDO $pdo): void
         WHERE lang = :lang 
         AND `key` LIKE 'projects.%'
     ");
-    $stmt->execute([':lang' => $lang]);
+    $stmt->execute([':lang' => $l]);
     $results = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 
     // sorting by number
@@ -742,6 +742,7 @@ function render_projects(PDO $pdo): void
                     break;
                 case 'code':
                     echo "<p class=\"ducode\">" . allowtags($content) . "</p>\n";
+                    break;
                 case 'codei':
                     echo "<p class=\"ducodei\">" . allowtags($content) . "</p>\n";
                     break;
