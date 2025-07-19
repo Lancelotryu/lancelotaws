@@ -21,7 +21,7 @@ body {
 }
 
 
-citation {
+p.citation {
   font-family: var(--poetry-font);
   color: var(--accent-color);
   font-size: 1.4rem;
@@ -34,8 +34,8 @@ citation {
   text-align: center;
 }
 
-.ducode {font-family: var(--code-font); font-size: 0.95em;}
-.ducodei {font-family: var(--code-font); font-size: 0.95em; margin-left:4em;}
+p.ducode {font-family: var(--code-font); font-size: 0.95em;}
+p.ducodei {font-family: var(--code-font); font-size: 0.95em; margin-left:4em;}
 
 nav, button, label {font-family: var(--default-font);}
 
@@ -62,7 +62,7 @@ nav, button, label {font-family: var(--default-font);}
 }
 
 p.texte {text-align:left; max-width: 50ch; margin: 0 auto;}
-p.contenu {max-width: 80ch; margin: 0em auto 0.5em auto;}
+.contenu {max-width: 80ch; margin: 0em auto 0.5em auto;}
 p.blabla {max-width: 80ch; margin: 2em auto 1em auto;}
 
 .btn-lancelot:hover {background-color: var(--accent-color); color: var(--dark-background);}

@@ -742,43 +742,44 @@ function render_projects(PDO $pdo): void
     foreach ($ordered as $block) {
         foreach ($block as $tag => $content) {
             switch ($tag) {
-                case 'ulopen':
-                    echo "<ul>\n";
-                    break;
-                case 'ulclose':
-                    echo "</ul>\n";
-                    break;
-                case 'code':
-                    echo "<p class=\"ducode\">" . allowtags($content) . "</p>\n";
-                    break;
-                case 'codei':
-                    echo "<p class=\"ducodei\">" . allowtags($content) . "</p>\n";
-                    break;
-                case 'quotation':
-                    echo "<p class=\"citation\">" . allowtags($content) . "</p>\n";
-                    break;
-                case 'tldr':
-                    echo "<div class=\"tldr\">" . allowtags($content) . "</div>\n";
-                    break;
-                case 'li':
-                    echo "<li>" . allowtags($content) . "</li>\n";
-                    break;
-                case 'p':
-                    echo "<p class=\"contenu\">" . allowtags($content) . "</p>\n";
-                    break;
-                case 'h1':
-                case 'h2':
-                case 'h3':
-                case 'h4':
-                case 'h5':
-                    echo "<$tag>" . allowtags($content) . "</$tag>\n";
-                    break;
-                default:
-                    // Ignore unrecognized tags silently
-                    break;
-            }
-        }
-    }
-}
-
+case 'ulopen':
+    echo "<ul>\n";
+    break;
+case 'ulclose':
+    echo "</ul>\n";
+    break;
+case 'code':
+    echo "<p class=\"ducode\">" . allowtags($content) . "</p>\n";
+    break;
+case 'codei':
+    echo "<p class=\"ducodei\">" . allowtags($content) . "</p>\n";
+    break;
+case 'quotation':
+    echo "<p class=\"citation\">" . allowtags($content) . "</p>\n";
+    break;
+case 'tldr':
+    echo "<div class=\"tldr\">" . allowtags($content) . "</div>\n";
+    break;
+case 'li':
+    echo "<li class=\"contenu\">" . allowtags($content) . "</li>\n";
+    break;
+case 'p':
+    echo "<p class=\"contenu\">" . allowtags($content) . "</p>\n";
+    break;
+case 'h2':
+    echo "<div class=\"section-title\"><h2>" . allowtags($content) . "</h2></div>\n";
+    break;
+case 'h3':
+    echo "<h3 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    break;
+case 'h4':
+    echo "<h4 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    break;
+case 'h5':
+    echo "<h5 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    break;
+default:
+// Ignore unrecognized tags silently
+    break;
+}}}}
 ?>
