@@ -770,13 +770,13 @@ case 'h2':
     echo "<div class=\"section-title\"><h2>" . allowtags($content) . "</h2></div>\n";
     break;
 case 'h3':
-    echo "<h3 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    echo "<h3 class=\"contenu\">" . allowtags($content) . "</h3>\n";
     break;
 case 'h4':
-    echo "<h4 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    echo "<h4 class=\"contenu\">" . allowtags($content) . "</h4>\n";
     break;
 case 'h5':
-    echo "<h5 class=\"contenu\">" . allowtags($content) . "</p>\n";
+    echo "<h5 class=\"contenu\">" . allowtags($content) . "</h5>\n";
     break;
 default:
 // Ignore unrecognized tags silently
