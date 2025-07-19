@@ -706,6 +706,9 @@ function render_shortnovels(PDO $pdo, string $lang, string $imageBasePath = 'ass
 function render_projects(PDO $pdo): void
 {
     global $l;
+
+    $prefix = 'projects';
+
     $stmt = $pdo->prepare("
         SELECT `key`, content 
         FROM translations 
@@ -714,10 +717,11 @@ function render_projects(PDO $pdo): void
     ");
     $stmt->execute([
         ':lang' => $l,
-        ':prefix' => 'projects.%'
+        ':prefix' => $prefix . '.%' // ← c’est ce qui manquait
     ]);
 
     $results = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+
 
     // sorting by number
     $ordered = [];
