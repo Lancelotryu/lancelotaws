@@ -19,8 +19,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Zip site, content, scripts
-        run: zip -r ${{ env.ZIP_NAME }} site content scripts
+      - name: Zip site, content, scripts, timbres
+        run: zip -r ${{ env.ZIP_NAME }} site content scripts timbres
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
