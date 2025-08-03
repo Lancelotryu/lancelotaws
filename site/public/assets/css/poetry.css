@@ -1,0 +1,86 @@
+/* Poetry CSS */
+
+/* Titles */
+
+.titre-igne {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 6vw;
+  line-height: 1;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8B2500;
+  text-align: center;
+  margin: 6em 0 0 0.6em;
+}
+
+h2.recueil {
+  font-family: var(--poetry-font);
+  text-align: center;
+  font-variant: small-caps;
+  margin: 1em 0 -2em 0;
+}
+
+h3.poeme {
+  font-family: var(--poetry-font);
+  color: var(--accent-color);
+  text-align: center;
+  margin: 3em 0 0em 0;
+}
+
+h4.partie {
+  font-family: var(--poetry-font);
+  color: #727272;
+  text-align: center;
+  font-size:1.2em;
+  margin: 0.5em 0 0 0;
+}
+
+/* Paragraphs */
+
+p.strophe {font-family: var(--poetry-font);}
+p.prose {margin-left: -3em; font-family: var(--poetry-font); max-width: 50ch;}
+p.citation {font-family: var(--poetry-font); font-size: 0.8em;}
+p.bigskip {font-family: var(--poetry-font); padding-top:0.8em;}
+p.medskip {font-family: var(--poetry-font); padding-top:1.2em;}
+
+/* Alinéas */
+
+span.vinzero {display: inline; margin-left: 2em;}
+span.vinun {display: inline; margin-left: 3em;}
+span.vindeux {display: inline; margin-left: 4em;}
+span.vindroite {display: inline; margin-left: 6em;}
+
+.poeme-box {display: table; margin: 0.6em auto;}
+
+.poeme, .citation, blockquote {font-family: var(--poetry-font);}
+
+p.marqueur {color:red; margin:2em 0 0 2.2em;}
+p.strophesong {font-family: var(--poetry-font); margin-top:0;}
+
+p.auteurpoeme {
+  font-size: 0.8em;
+  font-family: var(--poetry-font);
+  position: relative;
+  display: inline;
+  margin-left: 12em;
+}
+
+p.auteurfdl {
+  font-variant: small-caps;
+  font-size: 1.8em;
+  color: var(--heading-color); 
+  text-align: center;
+  padding-bottom:4em;
+}
+
+span.gras {font-weight: bold; font-size: 1.1em; color: var(--heading-color); }
+
+
+/* Short Novels */
+#nouvelle-container {
+  max-width: 600px;   /* ou toute autre valeur souhaitée */
+  margin: 0 auto;     /* pour centrer le bloc */
+}
+p.nouvelle {color:#000000; margin:0.2em; text-align:left;}
+p.paragraphe {margin:1.3em;}
+p.gparapgraphe {margin:2.3em;}

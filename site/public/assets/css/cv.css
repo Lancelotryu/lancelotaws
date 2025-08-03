@@ -1,0 +1,177 @@
+/* Skills Section */
+
+.skills .skills-category {
+  background-color: var(--surface-color);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.skills .skills-category:hover {transform: translateY(-5px);}
+
+.skills .skills-category h3 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.skills .skills-category h3:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.skills .skill-item {margin-bottom: 25px;}
+
+.skills .skill-item:last-child {margin-bottom: 0;}
+
+.skills .skill-item h4 {font-size: 16px; margin-bottom: 8px;}
+
+.skills .skill-item .skill-percentage {font-size: 14px; color: color-mix(in srgb, var(--heading-color), transparent 30%);}
+
+.skills .skill-item .progress {
+  height: 8px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skills .skill-item .progress .progress-bar {
+  background-color: var(--accent-color);
+  transition: width 1.5s ease-in-out;
+  width: 0;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.skills .skill-item .skill-tooltip {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s;
+}
+
+.skills .skill-item:hover .skill-tooltip {opacity: 1; transform: translateY(0);}
+
+.skills .skill-box {
+  background-color: var(--surface-color);
+  padding: 25px 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.skills .skill-box:hover {transform: translateY(-5px);}
+
+.skills .skill-box:hover i {color: var(--accent-color); transform: scale(1.1);}
+
+.skills .skill-box:hover .skill-tooltip {opacity: 1; transform: translateY(0);}
+
+.skills .skill-box i {
+  font-size: 36px;
+  color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  margin-bottom: 15px;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.skills .skill-box h4 {font-size: 18px; margin-bottom: 10px;}
+
+.skills .skill-box .skill-tooltip {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s;
+}
+
+@media (max-width: 991.98px) {
+  .skills .skills-category {margin-bottom: 30px;}
+  .skills .skills-category:last-child {margin-bottom: 0;}}
+
+@media (max-width: 767.98px) {
+  .skills .skill-box {margin-bottom: 20px;}
+  .skills .skill-box:last-child {margin-bottom: 0;}}
+
+/* Resume Section */
+
+.resume .resume-side {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+.resume .resume-side .profile-img {text-align: center;}
+
+.resume .resume-side .profile-img img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 5px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  border-radius: 50%;
+}
+
+.resume .resume-side .contact-info li {margin-bottom: 1rem; color: var(--default-color);}
+
+.resume .resume-side .contact-info li i {width: 25px; color: var(--accent-color); margin-right: 0.5rem;}
+
+.resume .resume-side .skill-item {margin-bottom: 1.5rem;}
+
+.resume .resume-side .skill-item span {font-size: 0.9rem; color: var(--default-color);}
+
+.resume .resume-side .skill-item .progress {
+  height: 8px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.resume .resume-side .skill-item .progress .progress-bar {
+  background-color: var(--accent-color);
+  width: 0;
+  transition: width 1s ease;
+}
+
+.resume .resume-section {margin-bottom: 3rem;}
+
+.resume .resume-section .resume-item {
+  padding-left: 1.5rem;
+  border-left: 2px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  margin-bottom: 2rem;
+  position: relative;
+}
+.resume .resume-section .resume-item:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  left: -9px;
+  top: 0;
+  background: var(--accent-color);
+}
+.resume h3 {margin-top: 2.5rem;}
+.resume h4 {font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600;}
+.resume h5{font-size: 1.3rem; margin: 2rem 0 0 0; color: var(--accent-color);}
+.resume-item h5 {font-size: 1rem; margin:0 0 0.5rem 0; color: var(--accent-color);}
+.company {font-size: 0.9rem; margin-bottom: 1rem; color: var(--heading-color);}
+.company i {margin-right: 0.5rem;}
+.resume ul {padding-left: 1.2rem;}
+.resume ul li {margin-bottom: 0.5rem; color: var(--default-color);}
+
+@media (max-width: 991.98px) {.resume .resume-side {margin-bottom: 2rem;}}
