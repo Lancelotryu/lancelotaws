@@ -1,0 +1,82 @@
+body {
+    background-color: #f8f8f5;
+    color: #101010;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 2em auto;
+    padding: 0 1em;
+	
+}
+
+/*div {border: 1px solid; border-color: green;} */
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: #6f1a1a;
+    font-weight: 700;
+    text-align:center;
+}
+
+
+h1 {margin:6em 0 1em 0;}
+h2 {margin:4em 0 1em 0;}
+h3 {margin:2.8em 0 1em 0;}
+h4 {margin:1.5em 0 1em 0;}
+
+
+em, i {color: #404040; font-style: italic;}
+b {color: #6f1a1a;}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em auto;
+}
+
+a {color: #303030; text-decoration: underline;}
+a:hover {color: #000000;}
+
+
+p.stt{
+	text-align:center;
+  font-size: 1.6em;
+    font-family: 'Playfair Display', serif;
+    color: #303030;
+    font-weight: 700;
+}
+p.ttauteur{
+	text-align:center;
+  font-size: 1.2em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+p.legende{
+margin:-1.5em 0 1.5em 0;
+text-align:center;
+font-size: 0.8em;}
+
+
+p.citation {
+  color: #303030;
+  font-size: 1.4em;
+  font-style: italic;
+  margin: 2em auto;
+  max-width: 700px;
+}
+p.auteur{
+  color: #303030;
+  margin-left:4em;
+  margin-top:-2em;
+  font-size: 1.1em;
+}
+
+p.commentaire{font-size: 1.4em; color:#828230; text-align:left; max-width: 80ch; margin: 1em 2em 0em 2em;}
+
+
+p.contenu {font-size: 1.2em; text-align:left; max-width: 80ch; margin: 1em 1em 0em 1em;}
+p.findepage {text-align:center;}
+
+/* Disable aos animation delay on mobile devices */
+@media screen and (max-width: 768px) {[data-aos-delay] {transition-delay: 0 !important;}}
